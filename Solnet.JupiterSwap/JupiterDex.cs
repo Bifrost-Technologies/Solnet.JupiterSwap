@@ -83,8 +83,13 @@ namespace Solnet.JupiterSwap
             new("outputMint", outputMint.ToString()),
             new("amount", amount.ToString()),
             new("swapMode", swapMode.ToString()),
-            new("asLegacyTransaction", "true")
+            new("asLegacyTransaction", "true"),
         };
+
+            if (slippageBps.HasValue)
+            { 
+              queryParams.Add(new("slippageBps", slippageBps.Value.ToString()));
+            }
 
             var queryString = string.Join("&", queryParams.Select(kv => $"{kv.Key}={kv.Value}"));
 
